@@ -13,15 +13,31 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public List<Booking> getAllBookings() {
-        return bookingRepository.findAll();
-    }
-
     public Booking createBooking(Booking booking) {
         return bookingRepository.save(booking);
     }
 
-    public List<Booking> getBookingsByUserId(Long userId) {
-        return bookingRepository.findByUserId(userId);
+    public Booking getBookingById(Long id) {
+        return bookingRepository.findById(id).orElse(null);
+    }
+
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    public Booking updateBooking(Long id, Booking bookingDetails) {
+        Booking booking = bookingRepository.findById(id).orElse(null);
+        if (booking != null) {
+            booking.setUser(bookingDetails.getUser());
+            booking.setShowTime(bookingDetails.getShowTime());
+            booking.setSeats(bookingDetails.getSeats());
+            // Add any other fields that need to be updated
+            return bookingRepository.save(booking);
+        }
+        return null;
+    }
+
+    public void deleteBooking(Long id) {
+        bookingRepository.deleteById(id);
     }
 }

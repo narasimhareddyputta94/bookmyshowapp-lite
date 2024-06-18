@@ -1,23 +1,30 @@
 package com.example.bookmyshowapplite.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 @Getter
 @Setter
 @Entity
 public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long showTimeId;
-    private String seatNumbers;
-    private String status; // e.g., BOOKED, CANCELLED
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "showtime_id", nullable = false)
+    private ShowTime showTime;
+
+    @Column(nullable = false)
+    private String seats;
 
     // Getters and Setters
+
+
 }

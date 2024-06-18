@@ -1,6 +1,6 @@
 package com.example.bookmyshowapplite.config;
 
-import com.example.bookmyshowapplite.service.JwtUtil;
+
 import com.example.bookmyshowapplite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

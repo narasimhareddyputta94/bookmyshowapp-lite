@@ -13,15 +13,32 @@ public class ShowTimeService {
     @Autowired
     private ShowTimeRepository showTimeRepository;
 
-    public List<ShowTime> getAllShowTimes() {
-        return showTimeRepository.findAll();
-    }
-
     public ShowTime createShowTime(ShowTime showTime) {
         return showTimeRepository.save(showTime);
     }
 
-    public List<ShowTime> getShowTimesByMovieId(Long movieId) {
-        return showTimeRepository.findByMovieId(movieId);
+    public ShowTime getShowTimeById(Long id) {
+        return showTimeRepository.findById(id).orElse(null);
+    }
+
+    public List<ShowTime> getAllShowTimes() {
+        return showTimeRepository.findAll();
+    }
+
+    public ShowTime updateShowTime(Long id, ShowTime showTimeDetails) {
+        ShowTime showTime = showTimeRepository.findById(id).orElse(null);
+        if (showTime != null) {
+            showTime.setMovie(showTimeDetails.getMovie());
+            showTime.setTheater(showTimeDetails.getTheater());
+            showTime.setStartTime(showTimeDetails.getStartTime());
+            showTime.setEndTime(showTimeDetails.getEndTime());
+            // Add any other fields that need to be updated
+            return showTimeRepository.save(showTime);
+        }
+        return null;
+    }
+
+    public void deleteShowTime(Long id) {
+        showTimeRepository.deleteById(id);
     }
 }

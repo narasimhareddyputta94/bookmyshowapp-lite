@@ -1,0 +1,21 @@
+.movies-container {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.movie-item {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.movie-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.movie-item p {
+    margin: 5px 0;
+}
